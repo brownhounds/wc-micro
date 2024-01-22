@@ -5,12 +5,12 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve('index.ts'),
-            name: 'swift',
+            name: 'wc-micro',
             fileName: () => `index.js`,
             formats: ['cjs'],
         },
         rollupOptions: {
-            external: [],
+            external: ['uhtml'],
         },
     },
 });

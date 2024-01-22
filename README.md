@@ -1,1 +1,1 @@
-# Initial Setup for Monorepo
+# Initial Setup for Wc-Micro Framework

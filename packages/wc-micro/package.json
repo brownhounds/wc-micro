@@ -1,5 +1,5 @@
 {
-    "name": "@brownhounds/swift",
+    "name": "@brownhounds/wc-micro",
     "version": "0.1.0",
     "license": "MIT",
     "author": "brownhounds",
@@ -13,9 +13,10 @@
     },
     "scripts": {
         "clean": "rm -rf ./dist",
-        "emit-declarations": "tsc --outDir ./dist",
+        "emit-declarations": "tsc --emitDeclarationOnly --declaration --outDir ./dist",
         "build-lib": "vite build",
-        "build": "npm run clean && npm run build-lib && npm run emit-declarations"
+        "build": "npm run clean && npm run build-lib && npm run emit-declarations",
+        "lint": "tsc --noEmit && eslint --ext .ts ."
     },
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.0",

@@ -1,17 +1,21 @@
 {
-  "name": "root",
-  "version": "0.1.0",
-  "license": "MIT",
-  "author": "brownhounds",
-  "workspaces": [
-      "packages/*"
-  ],
-  "scripts": {
-    "build-swift": "cd ./packages/swift && npm run build"
-  },
-  "devDependencies": {
-    "@brownhounds/eslint-config": "0.1.0",
-    "@brownhounds/ts-config": "0.1.0",
-    "typescript": "5.3.3"
-  }
+    "name": "root",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": "brownhounds",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "lint": "tsc --noEmit && eslint --ext .ts .",
+        "make-package": "./scripts/make-package",
+        "build-wc-micro": "cd ./packages/wc-micro && npm run build",
+        "prepare": "husky"
+    },
+    "devDependencies": {
+        "@brownhounds/eslint-config": "0.1.0",
+        "@brownhounds/ts-config": "0.1.0",
+        "husky": "9.0.6",
+        "typescript": "5.3.3"
+    }
 }

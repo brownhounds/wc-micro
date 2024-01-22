@@ -1,0 +1,47 @@
+#!/bin/bash
+
+. "$(dirname -- "$0")/core.sh"
+
+if [ $# -eq 0 ]; then
+    echo ""
+    echo "Usage: $0 <package_name>"
+    echo ""
+    exit 1
+fi
+
+argument=$1
+root_path=~/dev/wc-micro
+packages_path=~/dev/wc-micro/packages
+playground_root_path=~/dev/wc-micro-playground
+playground_scripts_path=~/dev/wc-micro-playground/scripts
+
+log_message_info "Pulling template for the package..."
+
+cd $packages_path && git clone git@github.com:brownhounds/package-template.git "$argument"
+
+find ./"$argument" -type f -exec sed -i "s/{{PACKAGE_NAME}}/$argument/g" {} +
+
+rm -rf ./"$argument"/.git
+
+rm ./"$argument"/.gitignore
+
+cd $root_path && add_script_to_package_json "build-$argument" "cd ./packages/$argument && npm run build"
+
+cd $playground_scripts_path && create_file_with_content "pack-$argument" "#!/bin/bash
+
+cd $root_path && npm run build-$argument
+cd $playground_root_path && npm install \"\$(npm pack ../wc-micro/packages/$argument)\"
+"
+
+chmod +x "pack-$argument"
+
+cd $playground_root_path && add_script_to_package_json "pack-$argument" "./scripts/pack-$argument"
+
+cd $root_path && add_content_to_file ".husky/pre-commit" "
+cd ../..
+cd ./packages/$argument && npm run lint
+"
+
+echo ""
+log_message_success "✨ Package Created: $argument"
+echo ""
