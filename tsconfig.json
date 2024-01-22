@@ -1,0 +1,6 @@
+{
+  "extends": "@brownhounds/ts-config/index.json",
+  "include": [
+    "."
+  ]
+}

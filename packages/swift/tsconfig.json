@@ -1,0 +1,11 @@
+{
+  "extends": "@brownhounds/ts-config/index.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+  },
+  "include": [
+    "."
+  ]
+}

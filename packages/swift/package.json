@@ -1,0 +1,29 @@
+{
+    "name": "@brownhounds/swift",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": "brownhounds",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "./dist/**/*"
+    ],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "scripts": {
+        "clean": "rm -rf ./dist",
+        "emit-declarations": "tsc --outDir ./dist",
+        "build-lib": "vite build",
+        "build": "npm run clean && npm run build-lib && npm run emit-declarations"
+    },
+    "devDependencies": {
+        "@brownhounds/eslint-config": "0.1.0",
+        "@brownhounds/ts-config": "0.1.0",
+        "typescript": "5.3.3",
+        "vite": "5.0.12"
+    },
+    "peerDependencies": {
+        "uhtml": "4.4.7"
+    }
+}
