@@ -9,7 +9,8 @@
         "./dist/**/*"
     ],
     "exports": {
-        ".": "./dist/index.js"
+        ".": "./dist/index.js",
+        "./decorators": "./dist/decorators.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",

@@ -10,59 +10,18 @@
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   Bundler support - Vite, otherwise go and figure.
+-   Application specific Event Bus - inter app commutation
 
 ### Ideas
 
 -   Unique Identifiers for classes and objects, instead of using NanoIDs or UUIDs I can use `Symbol(...)`
 
-### Fix Stuff - Next Stream
+### Retrospective
 
--   Broken Linter
-
-```json
-.prettierrc =>
-
-{
-    "printWidth": 80,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "overrides": [
-        {
-            "files": ["tsconfig.json", ".eslintrc", ".prettierrc"],
-            "options": {
-                "trailingComma": "none"
-            }
-        }
-    ]
-}
-```
-
-```json
-.eslintrc =>
-
-{
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "extends": ["@brownhounds/eslint-config"],
-    "overrides": [
-        {
-            "files": ["*.ts"],
-            "parserOptions": {
-                "project": ["./tsconfig.json"]
-            }
-        }
-    ]
-}
-```
-
--   Decorators.ts - duplicated type
--   Reactive.ts
-    -   `unsupportedCollectionsError` in to a function
-    -   rewrite `schedule()` with no function re assignment - use boolean flag `isSchedulerLocked`
-    -   notify array handling use returns instead of nested if statements
-    -   split imports by responsibilities
-    -   correct access modifiers in `Component.ts`
+-   Build a simple
+-   See If I like it
+-   Pros and Cons
+-   If I don't like - Kill that thing FIRE!!
 
 ## Phase 2 - Testing
 

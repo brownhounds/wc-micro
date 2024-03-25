@@ -1,12 +1,5 @@
 import type { Component } from './Component';
-
-type ComponentDecoratorConfig = {
-    tag: string;
-};
-
-type ComponentConstructor = {
-    tag: string;
-};
+import type { ComponentConstructor, ComponentDecoratorConfig } from './types';
 
 const define = (tag: string, component: new () => Component): void => {
     if (customElements.get(tag) === undefined) {
@@ -16,7 +9,7 @@ const define = (tag: string, component: new () => Component): void => {
 
 export const component =
     ({ tag }: ComponentDecoratorConfig) =>
-    (component: (new () => Component) & ComponentConstructor): void => {
+    (component: ComponentConstructor): void => {
         component.tag = tag;
         define(tag, component);
     };
