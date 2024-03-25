@@ -1,16 +1,69 @@
 ## Phase 1 - MVP
 
 -   [x] Template Rendering - uhtml - https://github.com/WebReflection/uhtml
-    -   [] Granural controll of rendering cycle
+    -   [] Granular control of rendering cycle
         -   [x] render()
-        -   [] Component lifecycle methods (onRender, onMounted etc)
+        -   [] Component lifecycle methods (onRender, onMount etc)
 -   [x] Internal Reactive State - Proxy, Pub Sub
--   [] External State - Abastraction on top of the reactive state - 2 way pub sub - Signals in Preact
+-   [] External State - Abstraction on top of the reactive state - 2 way pub sub - Signals in Preact
 -   [] Props
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   Bundler support - Vite, otherwise go and figure.
 
-## Pahse 2 - Testing
+### Ideas
+
+-   Unique Identifiers for classes and objects, instead of using NanoIDs or UUIDs I can use `Symbol(...)`
+
+### Fix Stuff - Next Stream
+
+-   Broken Linter
+
+```json
+.prettierrc =>
+
+{
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ["tsconfig.json", ".eslintrc", ".prettierrc"],
+            "options": {
+                "trailingComma": "none"
+            }
+        }
+    ]
+}
+```
+
+```json
+.eslintrc =>
+
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "extends": ["@brownhounds/eslint-config"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["./tsconfig.json"]
+            }
+        }
+    ]
+}
+```
+
+-   Decorators.ts - duplicated type
+-   Reactive.ts
+    -   `unsupportedCollectionsError` in to a function
+    -   rewrite `schedule()` with no function re assignment - use boolean flag `isSchedulerLocked`
+    -   notify array handling use returns instead of nested if statements
+    -   split imports by responsibilities
+    -   correct access modifiers in `Component.ts`
+
+## Phase 2 - Testing
 
 -   Testing Framework - Vitest
