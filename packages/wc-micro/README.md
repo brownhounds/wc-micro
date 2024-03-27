@@ -10,13 +10,18 @@
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   Bundler support - Vite, otherwise go and figure.
--   Application specific Event Bus - inner app commutation
+-   Application specific Event Bus - inner app commutation.
 
-### Highlights
+### Maintence
 
--   Statics ALERT!! 🚨
--   Subscriber Key 🔑
--   Nested Proxy 🤔
+-   [] Can I have repack and wite reload on file change in a package within mopnorepo
+
+### Agenda For A Next Styream
+
+-   Decorator for state 🎨 - https://blog.logrocket.com/practical-guide-typescript-decorators/
+    -   [x] Main Class Decorator - ability to subscribe to global signals
+    -   [] Local state to be also a decorator
+-   [] Implementation for Reactive Props
 
 ### Retrospective
 

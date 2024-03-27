@@ -6,4 +6,4 @@ export const makeSignal = <ReactiveState>(
 
 export const useSignal = <ReactiveState>(
     signal: Reactive<ReactiveState>
-): ReactiveState => signal.value();
+): ReactiveState => signal.value;

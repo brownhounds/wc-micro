@@ -7,12 +7,7 @@ export const html = uhtml;
 
 export type ComponentDecoratorConfig = {
     tag: string;
+    signals?: Reactive<unknown>[];
 };
 
-export type ComponentStatics = {
-    signals: Map<symbol, Reactive<unknown>>;
-};
-
-export type ComponentConstructor = (new () => Component) &
-    ComponentDecoratorConfig &
-    ComponentStatics;
+export type ComponentConstructor = new () => Component;

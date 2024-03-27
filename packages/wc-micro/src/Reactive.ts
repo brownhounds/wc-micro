@@ -1,4 +1,4 @@
-type SubscriberKey = string | symbol;
+type SubscriberKey = symbol;
 type SubscriberCallback = () => void;
 
 export class Reactive<ReactiveState> {
@@ -7,6 +7,10 @@ export class Reactive<ReactiveState> {
     private subscribers = new Map<SubscriberKey, SubscriberCallback>();
     private isSchedulerLocked = false;
     private proxy: ReactiveState;
+
+    public get value(): ReactiveState {
+        return this.proxy;
+    }
 
     constructor(state: any) {
         this.proxy = this.create(state);
@@ -25,10 +29,6 @@ export class Reactive<ReactiveState> {
         return this;
     }
 
-    public value(): ReactiveState {
-        return this.proxy;
-    }
-
     private create(state: any): ReactiveState {
         const self = this;
 
@@ -38,7 +38,7 @@ export class Reactive<ReactiveState> {
 
                 unsupportedCollectionError(prop);
 
-                if (typeof prop === 'object') {
+                if (typeof prop === 'object' && prop !== null) {
                     return new Proxy(prop, this);
                 }
 
