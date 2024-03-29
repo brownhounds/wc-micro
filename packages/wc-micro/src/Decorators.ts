@@ -1,4 +1,4 @@
-import { Component } from './Component';
+import type { Component } from './Component';
 import type { ComponentConstructor, ComponentDecoratorConfig } from './types';
 
 const define = (tag: string, component: new () => Component): void => {

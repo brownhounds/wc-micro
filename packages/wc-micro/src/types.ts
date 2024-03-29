@@ -1,4 +1,4 @@
-import { Hole, html as uhtml } from 'uhtml';
+import { type Hole, html as uhtml } from 'uhtml';
 import type { Component } from './Component';
 import type { Reactive } from './Reactive';
 

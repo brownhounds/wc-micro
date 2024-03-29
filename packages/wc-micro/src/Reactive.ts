@@ -30,7 +30,7 @@ export class Reactive<ReactiveState> {
     }
 
     private create(state: any): ReactiveState {
-        const self = this;
+        const reactive = this;
 
         return new Proxy(state, {
             get(target, name): unknown {
@@ -38,6 +38,7 @@ export class Reactive<ReactiveState> {
 
                 unsupportedCollectionError(prop);
 
+                // eslint-disable-next-line no-null/no-null
                 if (typeof prop === 'object' && prop !== null) {
                     return new Proxy(prop, this);
                 }
@@ -50,11 +51,11 @@ export class Reactive<ReactiveState> {
                 unsupportedCollectionError(target);
 
                 if (Array.isArray(target) && name === 'length') {
-                    self.schedule();
+                    reactive.schedule();
                     return true;
                 }
 
-                self.schedule();
+                reactive.schedule();
                 return true;
             },
         }) as ReactiveState;

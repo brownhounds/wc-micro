@@ -12,15 +12,27 @@
 -   Bundler support - Vite, otherwise go and figure.
 -   Application specific Event Bus - inner app commutation.
 
-### Maintence
+### Maintenance
 
--   [] Can I have repack and wite reload on file change in a package within mopnorepo
+-   [x] Can I have repack and vite reload on file change in a package within monorepo
+-   [x] Fix issue with eslint and `dist` folder
+-   [x] Update eslint in `js-tooling`
+-   [x] Stricter Typescript add following rules:
+    ```json
+    {
+        "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/consistent-type-exports": "error",
+        "@typescript-eslint/consistent-type-assertions": "error",
+        "@typescript-eslint/consistent-return": "error",
+        "no-null/no-null": "error"
+    }
+    ```
 
-### Agenda For A Next Styream
+### Agenda For A Next Stream
 
 -   Decorator for state 🎨 - https://blog.logrocket.com/practical-guide-typescript-decorators/
     -   [x] Main Class Decorator - ability to subscribe to global signals
-    -   [] Local state to be also a decorator
+    -   [] Local state to be also a decorator 🎨
 -   [] Implementation for Reactive Props
 
 ### Retrospective
@@ -33,3 +45,28 @@
 ## Phase 2 - Testing
 
 -   Testing Framework - Vitest
+
+### Research notes
+
+Styling:
+
+```js
+compose styles only once: this.shadowRoot.adoptedStyleSheets.length == 0
+```
+
+```js
+if (styles) {
+    this.sheet.replaceSync(styles);
+    if (this.shadowRoot) this.shadowRoot.adoptedStyleSheets = [this.sheet];
+}
+```
+
+### Snippets - Shit I can never remember
+
+```js
+export const Variable = {
+    STUFF: 'something'
+} as const;
+
+export type VariableType = (typeof Variable)[keyof typeof Variable];
+```
