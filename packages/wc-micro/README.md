@@ -12,27 +12,11 @@
 -   Bundler support - Vite, otherwise go and figure.
 -   Application specific Event Bus - inner app commutation.
 
-### Maintenance
-
--   [x] Can I have repack and vite reload on file change in a package within monorepo
--   [x] Fix issue with eslint and `dist` folder
--   [x] Update eslint in `js-tooling`
--   [x] Stricter Typescript add following rules:
-    ```json
-    {
-        "@typescript-eslint/consistent-type-imports": "error",
-        "@typescript-eslint/consistent-type-exports": "error",
-        "@typescript-eslint/consistent-type-assertions": "error",
-        "@typescript-eslint/consistent-return": "error",
-        "no-null/no-null": "error"
-    }
-    ```
-
 ### Agenda For A Next Stream
 
 -   Decorator for state 🎨 - https://blog.logrocket.com/practical-guide-typescript-decorators/
     -   [x] Main Class Decorator - ability to subscribe to global signals
-    -   [] Local state to be also a decorator 🎨
+    -   [x] Local state to be also a decorator 🎨
 -   [] Implementation for Reactive Props
 
 ### Retrospective

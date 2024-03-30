@@ -3,7 +3,6 @@ import type { Template } from './types';
 import { Reactive } from './Reactive';
 
 export class Component extends HTMLElement {
-    public static tag: string;
     public static signals: Reactive<unknown>[] = [];
 
     protected componentId = Symbol(this.constructor.name);
@@ -14,6 +13,7 @@ export class Component extends HTMLElement {
     }
 
     connectedCallback(): void {
+        this.initializeLocalState();
         this.render();
     }
 
@@ -32,11 +32,18 @@ export class Component extends HTMLElement {
         }
     }
 
-    protected useState<State>(state: State): State {
-        return new Reactive<State>(state).subscribe(
-            this.componentId,
-            this.render.bind(this)
-        ).value;
+    private initializeLocalState(): void {
+        const statePropertyNames =
+            this.constructor.prototype.statePropertyNames;
+
+        if (statePropertyNames && statePropertyNames.length) {
+            for (const propertyName of statePropertyNames) {
+                const context = this as any;
+                context[propertyName] = new Reactive<unknown>(
+                    context[propertyName]
+                ).subscribe(this.componentId, this.render.bind(this)).value;
+            }
+        }
     }
 
     private unsubscribeFromSignals(): void {

@@ -1,14 +1,14 @@
 type SubscriberKey = symbol;
 type SubscriberCallback = () => void;
 
-export class Reactive<ReactiveState> {
+export class Reactive<State> {
     public id = Symbol(this.constructor.name);
 
     private subscribers = new Map<SubscriberKey, SubscriberCallback>();
     private isSchedulerLocked = false;
-    private proxy: ReactiveState;
+    private proxy: State;
 
-    public get value(): ReactiveState {
+    public get value(): State {
         return this.proxy;
     }
 
@@ -19,17 +19,17 @@ export class Reactive<ReactiveState> {
     public subscribe(
         key: SubscriberKey,
         callback: SubscriberCallback
-    ): Reactive<ReactiveState> {
+    ): Reactive<State> {
         if (!this.subscribers.get(key)) this.subscribers.set(key, callback);
         return this;
     }
 
-    public unsubscribe(key: SubscriberKey): Reactive<ReactiveState> {
+    public unsubscribe(key: SubscriberKey): Reactive<State> {
         if (this.subscribers.get(key)) this.subscribers.delete(key);
         return this;
     }
 
-    private create(state: any): ReactiveState {
+    private create(state: any): State {
         const reactive = this;
 
         return new Proxy(state, {
@@ -58,7 +58,7 @@ export class Reactive<ReactiveState> {
                 reactive.schedule();
                 return true;
             },
-        }) as ReactiveState;
+        }) as State;
     }
 
     private notify(): void {

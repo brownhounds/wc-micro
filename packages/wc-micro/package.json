@@ -10,7 +10,9 @@
     ],
     "exports": {
         ".": "./dist/index.js",
-        "./decorators": "./dist/decorators.js"
+        "./decorators": "./dist/decorators.js",
+        "./signal": "./dist/signal.js",
+        "./reactive": "./dist/reactive.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",

@@ -1,5 +1,9 @@
 import type { Component } from './Component';
-import type { ComponentConstructor, ComponentDecoratorConfig } from './types';
+import type {
+    ComponentConstructor,
+    ComponentDecoratorConfig,
+    ComponentStaticProperties,
+} from './types';
 
 const define = (tag: string, component: new () => Component): void => {
     if (customElements.get(tag) === undefined) {
@@ -9,9 +13,7 @@ const define = (tag: string, component: new () => Component): void => {
 
 export const component =
     ({ tag, signals }: ComponentDecoratorConfig) =>
-    (component: ComponentConstructor & ComponentDecoratorConfig): void => {
-        component.tag = tag;
-
+    (component: ComponentConstructor & ComponentStaticProperties): void => {
         const extendedClass = class extends component {
             constructor() {
                 super();
@@ -30,3 +32,10 @@ export const component =
         component.signals = signals || [];
         define(tag, extendedClass);
     };
+
+export const state = (target: any, propertyName: string): void => {
+    target.statePropertyNames = [
+        ...(target.statePropertyNames || []),
+        propertyName,
+    ];
+};

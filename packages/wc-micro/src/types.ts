@@ -10,4 +10,8 @@ export type ComponentDecoratorConfig = {
     signals?: Reactive<unknown>[];
 };
 
+export type ComponentStaticProperties = {
+    signals?: Reactive<unknown>[];
+};
+
 export type ComponentConstructor = new () => Component;
