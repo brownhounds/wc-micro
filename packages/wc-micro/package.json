@@ -27,7 +27,7 @@
         "vite": "5.2.7"
     },
     "peerDependencies": {
-        "uhtml": "4.4.7"
+        "@brownhounds/uhtml": "0.1.0"
     },
     "repository": {
         "type": "git",

@@ -15,7 +15,7 @@ export default defineConfig({
             formats: ['cjs'],
         },
         rollupOptions: {
-            external: ['uhtml'],
+            external: ['@brownhounds/uhtml'],
         },
     },
 });

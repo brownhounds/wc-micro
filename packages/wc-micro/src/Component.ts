@@ -1,18 +1,32 @@
-import { render } from 'uhtml';
 import type { Template } from './types';
 import { Reactive } from './Reactive';
+import { render } from '@brownhounds/uhtml';
 
-export class Component extends HTMLElement {
+// TODO: Passing state props via direct it passes proxy, is this a problem (will this over render)
+
+export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
+    protected $id = Symbol(this.constructor.name);
 
-    protected componentId = Symbol(this.constructor.name);
+    // TODO: Figure it out how to configure this as a user (ME)
+    private $shadowDOM = false; // Temporary
+    private $props = {} as ComponentProps;
+
+    public get templateTarget(): HTMLElement | ShadowRoot | null {
+        return this.$shadowDOM ? this.shadowRoot : this;
+    }
+
+    protected get props(): ComponentProps {
+        return this.$props;
+    }
 
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
+        if (this.$shadowDOM) this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback(): void {
+        this.initializeProps();
         this.initializeLocalState();
         this.render();
     }
@@ -27,7 +41,7 @@ export class Component extends HTMLElement {
 
     protected render(): void {
         if (this.template) {
-            render(this.shadowRoot, this.template());
+            render(this.templateTarget, this.template());
             if (this.onRender) this.onRender();
         }
     }
@@ -41,14 +55,21 @@ export class Component extends HTMLElement {
                 const context = this as any;
                 context[propertyName] = new Reactive<unknown>(
                     context[propertyName]
-                ).subscribe(this.componentId, this.render.bind(this)).value;
+                ).subscribe(this.$id, this.render.bind(this)).value;
             }
         }
     }
 
+    private initializeProps(): void {
+        this.$props = new Reactive<ComponentProps>(this.$props).subscribe(
+            this.$id,
+            this.render.bind(this)
+        ).value;
+    }
+
     private unsubscribeFromSignals(): void {
         for (const signal of Component.signals) {
-            signal.unsubscribe(this.componentId);
+            signal.unsubscribe(this.$id);
         }
     }
 }

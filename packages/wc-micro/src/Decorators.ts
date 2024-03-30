@@ -5,7 +5,7 @@ import type {
     ComponentStaticProperties,
 } from './types';
 
-const define = (tag: string, component: new () => Component): void => {
+const define = (tag: string, component: new () => Component<unknown>): void => {
     if (customElements.get(tag) === undefined) {
         customElements.define(tag, component);
     }
@@ -20,10 +20,7 @@ export const component =
 
                 if (signals && signals.length) {
                     for (const signal of signals) {
-                        signal.subscribe(
-                            this.componentId,
-                            this.render.bind(this)
-                        );
+                        signal.subscribe(this.$id, this.render.bind(this));
                     }
                 }
             }
