@@ -2,8 +2,6 @@ import type { Template } from './types';
 import { Reactive } from './Reactive';
 import { render } from '@brownhounds/uhtml';
 
-// TODO: Passing state props via direct it passes proxy, is this a problem (will this over render)
-
 export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
     protected $id = Symbol(this.constructor.name);
@@ -12,7 +10,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     private $shadowDOM = false; // Temporary
     private $props = {} as ComponentProps;
 
-    public get templateTarget(): HTMLElement | ShadowRoot | null {
+    public get root(): HTMLElement | ShadowRoot | null {
         return this.$shadowDOM ? this.shadowRoot : this;
     }
 
@@ -28,7 +26,9 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     connectedCallback(): void {
         this.initializeProps();
         this.initializeLocalState();
+        if (this.beforeMount) this.beforeMount();
         this.render();
+        if (this.onMount) this.onMount();
     }
 
     disconnectedCallback(): void {
@@ -39,9 +39,13 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     protected onRender?: () => void;
 
+    protected onMount?: () => void;
+
+    protected beforeMount?: () => void;
+
     protected render(): void {
         if (this.template) {
-            render(this.templateTarget, this.template());
+            render(this.root, this.template());
             if (this.onRender) this.onRender();
         }
     }

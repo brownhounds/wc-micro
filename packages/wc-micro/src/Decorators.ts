@@ -5,7 +5,7 @@ import type {
     ComponentStaticProperties,
 } from './types';
 
-const define = (tag: string, component: new () => Component<unknown>): void => {
+const define = (tag: string, component: new () => Component): void => {
     if (customElements.get(tag) === undefined) {
         customElements.define(tag, component);
     }
@@ -30,9 +30,9 @@ export const component =
         define(tag, extendedClass);
     };
 
-export const state = (target: any, propertyName: string): void => {
-    target.statePropertyNames = [
-        ...(target.statePropertyNames || []),
+export const state = (component: any, propertyName: string): void => {
+    component.statePropertyNames = [
+        ...(component.statePropertyNames || []),
         propertyName,
     ];
 };

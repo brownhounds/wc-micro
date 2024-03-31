@@ -9,15 +9,18 @@
 -   [x] Main Class Decorator 🎨 - ability to subscribe to global signals
 -   [x] Local Sate Decorator 🎨
 -   [x] Implementation for Reactive Props
--   [] Batch rendering for the component `render()` methods!
+-   [x] Ref handling
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [] Application specific Event Bus - inner app commutation.
 
 -   Bundler support - Vite, otherwise go and figure.
 
+-   [] Proxy Nesting!!
 
-### Agenda For A Next Stream
+## TODAY
+
+-   [] Batch rendering for the component `render()` methods!
 
 ## Phase 2 - Testing
 
