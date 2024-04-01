@@ -77,6 +77,7 @@ export class Reactive<State> {
 
     private schedule(): void {
         if (!this.isSchedulerLocked) {
+            this.isSchedulerLocked = true;
             setTimeout(() => {
                 this.notify();
                 this.isSchedulerLocked = false;

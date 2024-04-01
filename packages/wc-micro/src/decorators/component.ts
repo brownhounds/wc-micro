@@ -22,7 +22,10 @@ export const component =
 
                 if (signals && signals.length) {
                     for (const signal of signals) {
-                        signal.subscribe(this.$id, this.render.bind(this));
+                        signal.subscribe(
+                            this.$id,
+                            this.render.bind(this, 'signal')
+                        );
                     }
                 }
             }

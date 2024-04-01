@@ -19,11 +19,15 @@
 
 ## HOT - Keep an eye on....
 
--   [] Proxy Nesting!! 👀
+-   [] Proxy Nesting!! Probably Fixed 👀
+-   [] Come up with idea of batching render calls from different
 
 ## TODAY
 
 -   [] Batch rendering for the component `render()` methods!
+    -   Deferred execution not worked as I expected 👎
+    -   Seems more predictable without async in the mix
+    -   Vue does ticks 🤔
 
 ## Phase 2 - Testing
 

@@ -26,7 +26,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
         this.initializeProps();
         this.initializeLocalState();
         if (this.beforeMount) this.beforeMount();
-        this.render();
+        this.render('connectedCallback');
         if (this.onMount) this.onMount();
     }
 
@@ -36,16 +36,18 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     protected template?: () => Template;
 
-    protected onRender?: () => void;
+    protected onRender?: (target?: string) => void;
 
     protected onMount?: () => void;
 
     protected beforeMount?: () => void;
 
-    protected render(): void {
+    // TODO: Make targets enum
+    // TODO: Emit an array of targets that rendered the component
+    protected render(target?: string): void {
         if (this.template) {
-            render(this.root, this.template());
-            if (this.onRender) this.onRender();
+            render(this.root, this.template!());
+            if (this.onRender) this.onRender(target);
         }
     }
 
@@ -58,7 +60,10 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
                 const context = this as any;
                 context[propertyName] = new Reactive<unknown>(
                     context[propertyName]
-                ).subscribe(this.$id, this.render.bind(this)).value;
+                ).subscribe(
+                    this.$id,
+                    this.render.bind(this, 'localState')
+                ).value;
             }
         }
     }
@@ -66,7 +71,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     private initializeProps(): void {
         this.$props = new Reactive<ComponentProps>(this.$props).subscribe(
             this.$id,
-            this.render.bind(this)
+            this.render.bind(this, 'props')
         ).value;
     }
 
