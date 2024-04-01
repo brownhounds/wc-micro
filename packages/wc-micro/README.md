@@ -11,10 +11,11 @@
 -   [x] Implementation for Reactive Props
 -   [x] Ref handling
 -   [x] View Model Binding ❤️ - I need it in my Live!! Like now! Vue: https://vuejs.org/guide/components/v-model.html
--   [x] App Config - figure it out, what is the way ??
+-   [x] App Config
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [] Application specific Event Bus - inner app commutation.
+-   [] Can I have collections in my reactive state
 
 ## HOT - Keep an eye on....
 

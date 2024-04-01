@@ -7,6 +7,7 @@ export class Reactive<State> {
     private subscribers = new Map<SubscriberKey, SubscriberCallback>();
     private isSchedulerLocked = false;
     private proxy: State;
+    private proxySet: WeakSet<any> = new WeakSet();
 
     public get value(): State {
         return this.proxy;
@@ -38,9 +39,15 @@ export class Reactive<State> {
 
                 unsupportedCollectionError(prop);
 
-                // eslint-disable-next-line no-null/no-null
-                if (typeof prop === 'object' && prop !== null) {
-                    return new Proxy(prop, this);
+                if (
+                    typeof prop === 'object' &&
+                    // eslint-disable-next-line no-null/no-null
+                    prop !== null &&
+                    !reactive.proxySet.has(prop)
+                ) {
+                    const propRef = new Proxy(prop, this);
+                    reactive.proxySet.add(propRef);
+                    return propRef;
                 }
 
                 return prop;
