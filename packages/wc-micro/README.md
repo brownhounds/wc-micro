@@ -10,13 +10,15 @@
 -   [x] Local Sate Decorator 🎨
 -   [x] Implementation for Reactive Props
 -   [x] Ref handling
+-   [x] View Model Binding ❤️ - I need it in my Live!! Like now! Vue: https://vuejs.org/guide/components/v-model.html
+-   [x] App Config - figure it out, what is the way ??
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [] Application specific Event Bus - inner app commutation.
 
--   Bundler support - Vite, otherwise go and figure.
+## HOT - Keep an eye on....
 
--   [] Proxy Nesting!!
+-   [] Proxy Nesting!! 👀
 
 ## TODAY
 

@@ -1,11 +1,13 @@
-import type { Component } from './Component';
-import type {
-    ComponentConstructor,
-    ComponentDecoratorConfig,
-    ComponentStaticProperties,
-} from './types';
+import type { Reactive } from '../Reactive';
 
-const define = (tag: string, component: new () => Component): void => {
+type ComponentDecoratorConfig = {
+    tag: string;
+    signals?: Reactive<unknown>[];
+};
+
+type Component = (new () => any) & { signals: Reactive<unknown>[] };
+
+const define = (tag: string, component: Component): void => {
     if (customElements.get(tag) === undefined) {
         customElements.define(tag, component);
     }
@@ -13,7 +15,7 @@ const define = (tag: string, component: new () => Component): void => {
 
 export const component =
     ({ tag, signals }: ComponentDecoratorConfig) =>
-    (component: ComponentConstructor & ComponentStaticProperties): void => {
+    (component: Component): void => {
         const extendedClass = class extends component {
             constructor() {
                 super();
@@ -29,10 +31,3 @@ export const component =
         component.signals = signals || [];
         define(tag, extendedClass);
     };
-
-export const state = (component: any, propertyName: string): void => {
-    component.statePropertyNames = [
-        ...(component.statePropertyNames || []),
-        propertyName,
-    ];
-};

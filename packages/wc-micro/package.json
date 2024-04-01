@@ -12,7 +12,10 @@
         ".": "./dist/index.js",
         "./decorators": "./dist/decorators.js",
         "./signal": "./dist/signal.js",
-        "./reactive": "./dist/reactive.js"
+        "./reactive": "./dist/reactive.js",
+        "./config": "./dist/config.js",
+        "./app": "./dist/app.js",
+        "./utilities": "./dist/utilities.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",

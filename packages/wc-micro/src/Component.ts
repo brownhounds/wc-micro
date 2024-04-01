@@ -1,17 +1,16 @@
 import type { Template } from './types';
 import { Reactive } from './Reactive';
 import { render } from '@brownhounds/uhtml';
+import { App } from './App';
 
 export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
     protected $id = Symbol(this.constructor.name);
 
-    // TODO: Figure it out how to configure this as a user (ME)
-    private $shadowDOM = false; // Temporary
     private $props = {} as ComponentProps;
 
     public get root(): HTMLElement | ShadowRoot | null {
-        return this.$shadowDOM ? this.shadowRoot : this;
+        return App.config.shadowDOM ? this.shadowRoot : this;
     }
 
     protected get props(): ComponentProps {
@@ -20,7 +19,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     constructor() {
         super();
-        if (this.$shadowDOM) this.attachShadow({ mode: 'open' });
+        if (App.config.shadowDOM) this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback(): void {

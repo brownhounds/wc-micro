@@ -9,6 +9,8 @@ export default defineConfig({
                 resolve('decorators.ts'),
                 resolve('reactive.ts'),
                 resolve('signal.ts'),
+                resolve('app.ts'),
+                resolve('utilities.ts'),
             ],
             name: 'wc-micro',
             fileName: (_, entryName) => `${entryName}.js`,
