@@ -1,32 +1,32 @@
-type SubscriberKey = symbol;
-type SubscriberCallback = () => void;
+import type { Component } from './Component';
+import { RenderTarget, type RenderTargetType } from './types';
 
 export class Reactive<State> {
-    public id = Symbol(this.constructor.name);
-
-    private subscribers = new Map<SubscriberKey, SubscriberCallback>();
+    private subscribers = new Set<Component>();
     private isSchedulerLocked = false;
     private proxy: State;
-    private proxySet: WeakSet<any> = new WeakSet();
+    private proxySet = new WeakSet<any>();
 
     public get value(): State {
         return this.proxy;
     }
 
-    constructor(state: any) {
+    constructor(
+        state: any,
+        private renderTarget:
+            | RenderTargetType
+            | undefined = RenderTarget.UNKNOWN
+    ) {
         this.proxy = this.create(state);
     }
 
-    public subscribe(
-        key: SubscriberKey,
-        callback: SubscriberCallback
-    ): Reactive<State> {
-        if (!this.subscribers.get(key)) this.subscribers.set(key, callback);
+    public subscribe(instance: Component): Reactive<State> {
+        if (!this.subscribers.has(instance)) this.subscribers.add(instance);
         return this;
     }
 
-    public unsubscribe(key: SubscriberKey): Reactive<State> {
-        if (this.subscribers.get(key)) this.subscribers.delete(key);
+    public unsubscribe(instance: Component): Reactive<State> {
+        this.subscribers.delete(instance);
         return this;
     }
 
@@ -70,8 +70,7 @@ export class Reactive<State> {
 
     private notify(): void {
         for (const subscriber of this.subscribers) {
-            const [, callback] = subscriber;
-            callback();
+            subscriber.render(this.renderTarget);
         }
     }
 

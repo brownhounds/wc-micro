@@ -1,11 +1,10 @@
-import type { Template } from './types';
+import { RenderTarget, type RenderTargetType, type Template } from './types';
 import { Reactive } from './Reactive';
 import { render } from '@brownhounds/uhtml';
 import { App } from './App';
 
 export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
-    protected $id = Symbol(this.constructor.name);
 
     private $props = {} as ComponentProps;
 
@@ -25,9 +24,9 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     connectedCallback(): void {
         this.initializeProps();
         this.initializeLocalState();
-        if (this.beforeMount) this.beforeMount();
-        this.render('connectedCallback');
-        if (this.onMount) this.onMount();
+        this.beforeMount?.();
+        this.render(RenderTarget.CONNECTED_CALLBACK);
+        this.onMount?.();
     }
 
     disconnectedCallback(): void {
@@ -36,18 +35,17 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     protected template?: () => Template;
 
-    protected onRender?: (target?: string) => void;
+    protected onRender?: (renderTrigger?: string) => void;
 
     protected onMount?: () => void;
 
     protected beforeMount?: () => void;
 
-    // TODO: Make targets enum
     // TODO: Emit an array of targets that rendered the component
-    protected render(target?: string): void {
+    public render(renderTrigger?: RenderTargetType): void {
         if (this.template) {
             render(this.root, this.template!());
-            if (this.onRender) this.onRender(target);
+            this.onRender?.(renderTrigger);
         }
     }
 
@@ -59,25 +57,23 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
             for (const propertyName of statePropertyNames) {
                 const context = this as any;
                 context[propertyName] = new Reactive<unknown>(
-                    context[propertyName]
-                ).subscribe(
-                    this.$id,
-                    this.render.bind(this, 'localState')
-                ).value;
+                    context[propertyName],
+                    RenderTarget.LOCAL_STATE
+                ).subscribe(this).value;
             }
         }
     }
 
     private initializeProps(): void {
-        this.$props = new Reactive<ComponentProps>(this.$props).subscribe(
-            this.$id,
-            this.render.bind(this, 'props')
-        ).value;
+        this.$props = new Reactive<ComponentProps>(
+            this.$props,
+            RenderTarget.PROPS
+        ).subscribe(this).value;
     }
 
     private unsubscribeFromSignals(): void {
         for (const signal of Component.signals) {
-            signal.unsubscribe(this.$id);
+            signal.unsubscribe(this);
         }
     }
 }

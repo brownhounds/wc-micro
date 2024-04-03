@@ -1,5 +1,6 @@
 type AppConfig = {
     shadowDOM?: boolean;
+    entryPoint?: () => Promise<any>;
 };
 
 export class App {
@@ -7,7 +8,7 @@ export class App {
         shadowDOM: false,
     };
 
-    public static async mergeConfigs(config: AppConfig): Promise<void> {
+    public static mergeConfigs(config: AppConfig): void {
         App.config = {
             ...App.config,
             ...config,
@@ -15,6 +16,7 @@ export class App {
     }
 }
 
-export const initApp = async (config: AppConfig): Promise<void> => {
-    return App.mergeConfigs(config);
+export const initApp = (config: AppConfig): void => {
+    App.mergeConfigs(config);
+    void App.config.entryPoint?.();
 };
