@@ -1,5 +1,5 @@
 import type { Component } from './component/Component';
-import { RenderTarget, type RenderTargetType } from './types';
+import { RenderTrigger, type RenderTriggerType } from './types';
 
 export class Reactive<State> {
     private subscribers = new Set<Component>();
@@ -12,7 +12,7 @@ export class Reactive<State> {
 
     constructor(
         state: any,
-        private renderTarget: RenderTargetType = RenderTarget.UNKNOWN
+        private renderTrigger: RenderTriggerType = RenderTrigger.UNKNOWN
     ) {
         this.proxy = this.create(state);
     }
@@ -67,7 +67,7 @@ export class Reactive<State> {
 
     private notify(): void {
         for (const subscriber of this.subscribers) {
-            subscriber.render(this.renderTarget);
+            subscriber.render(this.renderTrigger);
         }
     }
 }

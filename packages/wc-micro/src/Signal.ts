@@ -1,7 +1,8 @@
-import { RenderTarget } from './types';
 import { Reactive } from './Reactive';
+import { RenderTrigger } from './types';
 
 export const signal = <State>(
     state: State,
-    renderTarget?: string
-): Reactive<State> => new Reactive(state, renderTarget || RenderTarget.SIGNAL);
+    renderTrigger?: string
+): Reactive<State> =>
+    new Reactive(state, renderTrigger || RenderTrigger.SIGNAL);

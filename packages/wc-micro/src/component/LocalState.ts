@@ -8,11 +8,11 @@ export class LocalState {
         const stateProperties = this.component.constructor.prototype
             .stateProperties as Map<string, string>;
 
-        for (const [propertyName, renderTarget] of stateProperties) {
+        for (const [propertyName, renderTrigger] of stateProperties) {
             const context = this.component as any;
             context[propertyName] = new Reactive<unknown>(
                 context[propertyName],
-                renderTarget
+                renderTrigger
             ).subscribe(this.component).value;
         }
     }

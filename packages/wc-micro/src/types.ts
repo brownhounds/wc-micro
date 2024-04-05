@@ -4,7 +4,7 @@ export type Template = Hole;
 export const html = uhtml;
 export const svg = usvg;
 
-export const RenderTarget = {
+export const RenderTrigger = {
     UNKNOWN: 'UNKNOWN',
     PROPS: 'PROPS',
     SIGNAL: 'SIGNAL',
@@ -12,6 +12,6 @@ export const RenderTarget = {
     ON_MOUNT: 'ON_MOUNT',
 } as const;
 
-export type RenderTargetType =
-    | (typeof RenderTarget)[keyof typeof RenderTarget]
+export type RenderTriggerType =
+    | (typeof RenderTrigger)[keyof typeof RenderTrigger]
     | string;

@@ -1,13 +1,14 @@
-import { RenderTarget, type RenderTargetType, type Template } from '../types';
-import { Reactive } from '../Reactive';
+import { RenderTrigger, type RenderTriggerType, type Template } from '../types';
 import { App } from '../App';
 import { Renderer } from './Renderer';
 import { LocalState } from './LocalState';
+import { Props } from './Props';
+import type { Reactive } from '../Reactive';
 
 export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
 
-    private $props = {} as ComponentProps;
+    private $props = new Props<ComponentProps>(this);
     private $renderer = new Renderer(this);
     private $localState = new LocalState(this);
 
@@ -16,7 +17,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     }
 
     protected get props(): ComponentProps {
-        return this.$props;
+        return this.$props.data;
     }
 
     constructor() {
@@ -25,10 +26,10 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     }
 
     connectedCallback(): void {
-        this.initializeProps();
+        this.$props.initialize();
         this.$localState.initialize();
         this.beforeMount?.();
-        this.render(RenderTarget.ON_MOUNT);
+        this.render(RenderTrigger.ON_MOUNT);
         this.onMount?.();
     }
 
@@ -38,21 +39,14 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     public template?: () => Template;
 
-    public onRender?: (renderTriggers?: RenderTargetType[]) => void;
+    public onRender?: (renderTriggers?: RenderTriggerType[]) => void;
 
     protected onMount?: () => void;
 
     protected beforeMount?: () => void;
 
-    public render(renderTrigger?: RenderTargetType): void {
-        this.$renderer.schedule(renderTrigger || RenderTarget.UNKNOWN);
-    }
-
-    private initializeProps(): void {
-        this.$props = new Reactive<ComponentProps>(
-            this.$props,
-            RenderTarget.PROPS
-        ).subscribe(this).value;
+    public render(renderTrigger?: RenderTriggerType): void {
+        this.$renderer.schedule(renderTrigger || RenderTrigger.UNKNOWN);
     }
 
     private unsubscribeFromSignals(): void {

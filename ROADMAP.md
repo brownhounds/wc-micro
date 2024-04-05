@@ -27,6 +27,17 @@
 -   [x] Allow passing custom user defined `renderTriggers`
     -   [x] Local State
     -   [x] Signals
+-   [x] Prop Diffing
+    -   Props are getting always set when parent rerenders, triggering child component to schedule a render
+        -   Shallow Diffing:
+            -   [x] Primitives - EZ 🎉
+            -   [x] `null` you suck so much!
+            -   [x] Objects - objects let it render!
+            -   [x] Function, callback, handler - set it once forget!
+-   [x] Split `Component` in to responsibilities:
+    -   [x] Renderer
+    -   [x] Local State
+    -   [x] Props
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [] Application specific Event Bus - inner app commutation.
@@ -38,12 +49,6 @@
 
 ## CURRENT
 
--   [] Prop Diffing
--   [] Split `Component` in to responsibilities:
-    -   [x] Renderer
-    -   [x] Local State
-    -   [x] Signals
-    -   [] Props
 -   [] Prop Validation ??
 -   [] Prop rendering array dependency ??
 -   [] Can I detect dangling custom elements tags ?? missing imports

@@ -1,4 +1,4 @@
-import { RenderTarget, type RenderTargetType } from '../types';
+import { RenderTrigger, type RenderTriggerType } from '../types';
 
 type Component = any;
 
@@ -8,13 +8,13 @@ export const state =
         if (!component.stateProperties) {
             component.stateProperties = new Map<
                 string,
-                string | RenderTargetType
+                string | RenderTriggerType
             >();
         }
 
         if (!component.stateProperties.has(propertyName))
             component.stateProperties.set(
                 propertyName,
-                renderTrigger || RenderTarget.LOCAL_STATE
+                renderTrigger || RenderTrigger.LOCAL_STATE
             );
     };
