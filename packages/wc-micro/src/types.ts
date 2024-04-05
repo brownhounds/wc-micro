@@ -9,7 +9,9 @@ export const RenderTarget = {
     PROPS: 'PROPS',
     SIGNAL: 'SIGNAL',
     LOCAL_STATE: 'LOCAL_STATE',
-    CONNECTED_CALLBACK: 'CONNECTED_CALLBACK',
+    ON_MOUNT: 'ON_MOUNT',
 } as const;
 
-export type RenderTargetType = (typeof RenderTarget)[keyof typeof RenderTarget];
+export type RenderTargetType =
+    | (typeof RenderTarget)[keyof typeof RenderTarget]
+    | string;

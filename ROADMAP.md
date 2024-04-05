@@ -24,6 +24,9 @@
         -   binds render call to user refresh rate (device)
         -   no tickers, schedule render on next available frame
         -   worst case scenario 4ms to do stuff on 360Hz screen
+-   [x] Allow passing custom user defined `renderTriggers`
+    -   [x] Local State
+    -   [x] Signals
 -   [] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [] Application specific Event Bus - inner app commutation.
@@ -33,18 +36,15 @@
 
 -   [] Proxy Nesting!! Probably Fixed 👀
 
-## TODAY
+## CURRENT
 
--   [] Allow passing custom user defined `renderTriggers`
-    -   [] Local State
-    -   [] Signals
+-   [] Prop Diffing
 -   [] Split `Component` in to responsibilities:
     -   [x] Renderer
+    -   [x] Local State
+    -   [x] Signals
     -   [] Props
-    -   [] Local State
-    -   [] Signals
 -   [] Prop Validation ??
--   [] Prop Diffing ??
 -   [] Prop rendering array dependency ??
 -   [] Can I detect dangling custom elements tags ?? missing imports
 
