@@ -1,12 +1,14 @@
-import { RenderTarget, type RenderTargetType, type Template } from './types';
-import { Reactive } from './Reactive';
-import { render } from '@brownhounds/uhtml';
-import { App } from './App';
+import { RenderTarget, type RenderTargetType, type Template } from '../types';
+import { Reactive } from '../Reactive';
+import { App } from '../App';
+import { Renderer } from './Renderer';
 
 export class Component<ComponentProps = unknown> extends HTMLElement {
     public static signals: Reactive<unknown>[] = [];
 
     private $props = {} as ComponentProps;
+
+    private $renderer = new Renderer(this);
 
     public get root(): HTMLElement | ShadowRoot | null {
         return App.config.shadowDOM ? this.shadowRoot : this;
@@ -33,20 +35,16 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
         this.unsubscribeFromSignals();
     }
 
-    protected template?: () => Template;
+    public template?: () => Template;
 
-    protected onRender?: (renderTrigger?: string) => void;
+    public onRender?: (renderTriggers?: RenderTargetType[]) => void;
 
     protected onMount?: () => void;
 
     protected beforeMount?: () => void;
 
-    // TODO: Emit an array of targets that rendered the component
-    public render(renderTrigger?: RenderTargetType): void {
-        if (this.template) {
-            render(this.root, this.template!());
-            this.onRender?.(renderTrigger);
-        }
+    public render(renderTrigger: RenderTargetType): void {
+        this.$renderer.schedule(renderTrigger);
     }
 
     private initializeLocalState(): void {

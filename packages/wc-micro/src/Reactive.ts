@@ -1,9 +1,8 @@
-import type { Component } from './Component';
+import type { Component } from './component/Component';
 import { RenderTarget, type RenderTargetType } from './types';
 
 export class Reactive<State> {
     private subscribers = new Set<Component>();
-    private isSchedulerLocked = false;
     private proxy: State;
     private proxySet = new WeakSet<any>();
 
@@ -13,9 +12,7 @@ export class Reactive<State> {
 
     constructor(
         state: any,
-        private renderTarget:
-            | RenderTargetType
-            | undefined = RenderTarget.UNKNOWN
+        private renderTarget: RenderTargetType = RenderTarget.UNKNOWN
     ) {
         this.proxy = this.create(state);
     }
@@ -58,11 +55,11 @@ export class Reactive<State> {
                 unsupportedCollectionError(target);
 
                 if (Array.isArray(target) && name === 'length') {
-                    reactive.schedule();
+                    reactive.notify();
                     return true;
                 }
 
-                reactive.schedule();
+                reactive.notify();
                 return true;
             },
         }) as State;
@@ -71,16 +68,6 @@ export class Reactive<State> {
     private notify(): void {
         for (const subscriber of this.subscribers) {
             subscriber.render(this.renderTarget);
-        }
-    }
-
-    private schedule(): void {
-        if (!this.isSchedulerLocked) {
-            this.isSchedulerLocked = true;
-            setTimeout(() => {
-                this.notify();
-                this.isSchedulerLocked = false;
-            }, 0);
         }
     }
 }

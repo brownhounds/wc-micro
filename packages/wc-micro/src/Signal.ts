@@ -1,4 +1,4 @@
-import { RenderTarget } from '..';
+import { RenderTarget } from './types';
 import { Reactive } from './Reactive';
 
 export const signal = <State>(state: State): Reactive<State> =>
