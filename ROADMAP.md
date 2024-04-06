@@ -36,6 +36,30 @@
     -   [x] Props
 -   [x] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
+-   [x] Make it supper hot - pre benchmarking 🔥🔥🔥🔥🔥🔥🔥 - It does not brake a sweat 😓 🎉
+
+## HOT - Keep an eye on....
+
+-   [] Proxy Nesting!! Probably Fixed 👀
+
+## CURRENT
+
+-   [] Put it through a benchmarks: https://github.com/krausest/js-framework-benchmark?tab=readme-ov-file
+
+## Phase 2 - Testing
+
+-   [] Testing Framework - Vitest
+-   [] Concept of screen
+-   [] Shadow DOM Piercing
+-   [] Snapshots
+    -   [] DOM HTML Snapshots
+    -   [] `console.dir`
+-   [] Setup Github Actions - Run tests on every push
+-   [] Releasing based on tags
+
+## Phase 3 - Routing
+
+-   Build SPA router!
 
 ## Nice To Have
 
@@ -44,27 +68,6 @@
 -   [] Prop Validation ??
 -   [] Prop rendering array dependency ??
 -   [] Can I detect dangling custom elements tags ?? missing imports
-
-## HOT - Keep an eye on....
-
--   [] Proxy Nesting!! Probably Fixed 👀
-
-## CURRENT
-
--   [] Make it supper hot - pre benchmarking 🔥🔥🔥🔥🔥🔥🔥
-
-## Phase 2 - Testing
-
--   Testing Framework - Vitest
--   [] Concept of screen
--   [] Shadow DOM Piercing
--   [] Snapshots
-    -   [] DOM HTML Snapshots
-    -   [] `console.dir`
-
-## Phase 3 - Routing
-
--   Build SPA router!
 
 ## Phase at some point
 
