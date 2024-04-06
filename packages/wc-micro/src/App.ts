@@ -1,12 +1,10 @@
 type AppConfig = {
-    shadowDOM?: boolean;
+    cssReset?: string;
     entryPoint?: () => Promise<any>;
 };
 
 export class App {
-    static config: AppConfig = {
-        shadowDOM: false,
-    };
+    static config: AppConfig = {};
 
     public static mergeConfigs(config: AppConfig): void {
         App.config = {

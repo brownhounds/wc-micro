@@ -3,9 +3,10 @@ import type { Reactive } from '../Reactive';
 type ComponentDecoratorConfig = {
     tag: string;
     signals?: Reactive<unknown>[];
+    styles?: string[];
 };
 
-type Component = (new () => any) & { signals: Reactive<unknown>[] };
+type Component = any;
 
 const define = (tag: string, component: Component): void => {
     if (customElements.get(tag) === undefined) {
@@ -14,7 +15,7 @@ const define = (tag: string, component: Component): void => {
 };
 
 export const component =
-    ({ tag, signals }: ComponentDecoratorConfig) =>
+    ({ tag, signals, styles }: ComponentDecoratorConfig) =>
     (component: Component): void => {
         const extendedClass = class extends component {
             constructor() {
@@ -28,6 +29,7 @@ export const component =
             }
         };
 
-        component.signals = signals || [];
+        component.$signals = signals || [];
+        component.$styles = styles || [];
         define(tag, extendedClass);
     };

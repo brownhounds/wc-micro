@@ -1,19 +1,17 @@
 import { RenderTrigger, type RenderTriggerType, type Template } from '../types';
-import { App } from '../App';
 import { Renderer } from './Renderer';
 import { LocalState } from './LocalState';
 import { Props } from './Props';
-import type { Reactive } from '../Reactive';
+import { Styles } from './Styles';
 
 export class Component<ComponentProps = unknown> extends HTMLElement {
-    public static signals: Reactive<unknown>[] = [];
-
     private $props = new Props<ComponentProps>(this);
     private $renderer = new Renderer(this);
     private $localState = new LocalState(this);
+    private $styles = new Styles(this);
 
     public get root(): HTMLElement | ShadowRoot | null {
-        return App.config.shadowDOM ? this.shadowRoot : this;
+        return this.shadowRoot;
     }
 
     protected get props(): ComponentProps {
@@ -22,10 +20,11 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     constructor() {
         super();
-        if (App.config.shadowDOM) this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback(): void {
+        this.$styles.initialize();
         this.$props.initialize();
         this.$localState.initialize();
         this.beforeMount?.();
@@ -50,7 +49,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
     }
 
     private unsubscribeFromSignals(): void {
-        for (const signal of Component.signals) {
+        for (const signal of (this.constructor as any).$signals) {
             signal.unsubscribe(this);
         }
     }
