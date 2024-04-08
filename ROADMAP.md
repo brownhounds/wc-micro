@@ -18,7 +18,7 @@
 -   [x] UHTML `@` 👀 - inline handlers
 -   [x] Refactor PubSub
 -   [x] Batch rendering for the component `render()` methods!
-    -   `uhtml` dom diffing it is very cheap, 0.1 millisecond
+    -   `uhtml` dom diffing is very cheap, 0.1 millisecond
     -   `setTimeout` - FTW!!
 -   [x] Allow passing custom user defined `renderTriggers`
     -   [x] Local State
@@ -29,7 +29,7 @@
             -   [x] Primitives - EZ 🎉
             -   [x] `null` you suck so much!
             -   [x] Objects - objects let it render!
-            -   [x] Function, callback, handler - set it once forget!
+            -   [x] Function, callback, handler - set it once and forget!
 -   [x] Split `Component` in to responsibilities:
     -   [x] Renderer
     -   [x] Local State
@@ -37,18 +37,15 @@
 -   [x] Styling - https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet
     -   No css in jss, CSS or SCSS
 -   [x] Make it supper hot - pre benchmarking 🔥🔥🔥🔥🔥🔥🔥 - It does not brake a sweat 😓 🎉
-
-## HOT - Keep an eye on....
-
--   [] Proxy Nesting!! Probably Fixed 👀
+-   [x] Props Cache causing performance issues, kicking in Long Running Tasks periodically - cache removed ✅
+-   [x] Proxy Nesting!! Probably Fixed 👀
 
 ## CURRENT
 
--   [] Put it through a benchmarks: https://github.com/krausest/js-framework-benchmark?tab=readme-ov-file
+-   [] Testing Framework - Vitest
 
 ## Phase 2 - Testing
 
--   [] Testing Framework - Vitest
 -   [] Concept of screen
 -   [] Shadow DOM Piercing
 -   [] Snapshots

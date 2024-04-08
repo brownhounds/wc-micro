@@ -9,14 +9,16 @@ export class Renderer {
     constructor(private component: Component) {}
 
     public schedule(renderTrigger: RenderTriggerType): void {
-        this.scheduledRenderTriggers.add(renderTrigger);
-        if (!this.locked) {
-            this.locked = true;
-            setTimeout(() => {
-                this.render(Array.from(this.scheduledRenderTriggers));
-                this.scheduledRenderTriggers.clear();
-                this.locked = false;
-            }, 0);
+        if (this.component.template) {
+            this.scheduledRenderTriggers.add(renderTrigger);
+            if (!this.locked) {
+                this.locked = true;
+                setTimeout(() => {
+                    this.render(Array.from(this.scheduledRenderTriggers));
+                    this.scheduledRenderTriggers.clear();
+                    this.locked = false;
+                }, 0);
+            }
         }
     }
 

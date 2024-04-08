@@ -4,7 +4,6 @@ import type { Component } from './Component';
 
 export class Props<ComponentProps = unknown> {
     public data = {} as ComponentProps;
-    private cache = new Map<string, unknown>();
 
     constructor(private component: Component) {}
 
@@ -25,28 +24,25 @@ export class Props<ComponentProps = unknown> {
             // eslint-disable-next-line no-null/no-null
             value !== null
         ) {
-            this.set(name, value);
+            this.setReactive(name, value);
             return;
         }
+
+        const prop = (this.data as any)[name];
 
         if (typeof value === 'function') {
-            if (!this.cache.has(name)) {
-                this.updateCacheAndSet(name, value);
+            if (!prop) {
+                this.setReactive(name, value);
             }
             return;
         }
 
-        if (!this.cache.has(name)) {
-            this.updateCacheAndSet(name, value);
+        if (!prop) {
+            this.setReactive(name, value);
         } else {
-            if (this.cache.get(name) !== value) {
-                this.updateCacheAndSet(name, value);
+            if (prop !== value) {
+                this.setReactive(name, value);
             }
         }
-    }
-
-    private updateCacheAndSet(name: string, value: unknown): void {
-        this.cache.set(name, value);
-        this.setReactive(name, value);
     }
 }
