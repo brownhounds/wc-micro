@@ -40,6 +40,10 @@
 -   [x] Props Cache causing performance issues, kicking in Long Running Tasks periodically - cache removed ✅
 -   [x] Proxy Nesting!! Probably Fixed 👀
 
+## HOT
+
+-   [] Make sure there is no issues with a cleanup, something maybe kicking of when shrinking the list of components (perf repo)
+
 ## CURRENT
 
 -   [] Testing Framework - Vitest
