@@ -1,6 +1,6 @@
 {
     "name": "@brownhounds/wc-micro",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
     "author": "brownhounds",
     "main": "dist/index.js",
@@ -30,7 +30,7 @@
         "vite": "5.2.7"
     },
     "peerDependencies": {
-        "@brownhounds/uhtml": "0.1.0"
+        "@brownhounds/uhtml": "0.2.0"
     },
     "repository": {
         "type": "git",
