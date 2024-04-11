@@ -34,15 +34,18 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     disconnectedCallback(): void {
         this.unsubscribeFromSignals();
+        this.onDispose?.();
     }
 
     public template?: () => Template;
 
     public onRender?: (renderTriggers?: RenderTriggerType[]) => void;
 
-    protected onMount?: () => void;
+    public onDispose?: () => void;
 
-    protected beforeMount?: () => void;
+    public onMount?: () => void;
+
+    public beforeMount?: () => void;
 
     public render(renderTrigger?: RenderTriggerType): void {
         this.$renderer.schedule(renderTrigger || RenderTrigger.UNKNOWN);

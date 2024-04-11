@@ -39,16 +39,17 @@
 -   [x] Make it supper hot - pre benchmarking 🔥🔥🔥🔥🔥🔥🔥 - It does not brake a sweat 😓 🎉
 -   [x] Props Cache causing performance issues, kicking in Long Running Tasks periodically - cache removed ✅
 -   [x] Proxy Nesting!! Probably Fixed 👀
-
-## HOT
-
--   [] Make sure there is no issues with a cleanup, something maybe kicking of when shrinking the list of components (perf repo)
-
-## CURRENT
-
--   [] Testing Framework - Vitest
+-   [x] Make sure there is no issues with a cleanup, something maybe kicking of when shrinking the list of components (perf repo) - User Error ✅
 
 ## Phase 2 - Testing
+
+-   [x] Testing Framework - Vitest
+
+## Chores
+
+-   [] Update perf repo, make sure using onDispose to cancel animation frames
+
+## CURRENT
 
 -   [] Concept of screen
 -   [] Shadow DOM Piercing
