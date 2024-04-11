@@ -4,9 +4,9 @@ import { resolve } from 'path';
 export default defineConfig({
     build: {
         lib: {
-            entry: resolve('index.ts'),
+            entry: [resolve('index.ts'), resolve('snapshots.ts')],
             name: 'wc-testing',
-            fileName: () => `index.js`,
+            fileName: (_, entryName) => `${entryName}.js`,
             formats: ['cjs'],
         },
     },

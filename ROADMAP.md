@@ -41,21 +41,20 @@
 -   [x] Proxy Nesting!! Probably Fixed 👀
 -   [x] Make sure there is no issues with a cleanup, something maybe kicking of when shrinking the list of components (perf repo) - User Error ✅
 
-## Phase 2 - Testing
+## CHORES
 
--   [x] Testing Framework - Vitest
-
-## Chores
-
--   [] Update perf repo, make sure using onDispose to cancel animation frames
+-   [] Fix an app in perf repo, cleanup requestAnimationFrames in removed components
+-   [] Update dependencies fro HTML Snapshots
 
 ## CURRENT
 
--   [] Concept of screen
--   [] Shadow DOM Piercing
--   [] Snapshots
-    -   [] DOM HTML Snapshots
-    -   [] `console.dir`
+-   [x] Testing Framework - Vitest
+-   [x] Shadow DOM Piercing
+-   [x] Concept of screen
+-   [x] DOM HTML Snapshots
+
+## Phase 2 - Testing
+
 -   [] Setup Github Actions - Run tests on every push
 -   [] Releasing based on tags
 
@@ -77,10 +76,14 @@
     -   Hybrid between component testing and e2e
     -   Storybook interface
     -   Not storybook!!!
+        -   https://webdriver.io/
+        -   Vitest has browser environment which default to webdriver as a default driver
 
 ### Play 🎉
 
 -   Component composition - slots
+-   Vitest has browser mode: https://vitest.dev/guide/browser.html
+-   There is a thing... HappY-Dom 🎉
 
 ### Snippets - Shit I can never remember
 

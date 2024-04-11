@@ -1,2 +1,1 @@
-export * from './src/Test';
-export * from './src/types';
+export * from './src/Present';
