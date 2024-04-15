@@ -41,21 +41,49 @@
 -   [x] Proxy Nesting!! Probably Fixed 👀
 -   [x] Make sure there is no issues with a cleanup, something maybe kicking of when shrinking the list of components (perf repo) - User Error ✅
 
-## CHORES
-
--   [] Fix an app in perf repo, cleanup requestAnimationFrames in removed components
--   [] Update dependencies fro HTML Snapshots
-
-## CURRENT
+## Phase 2 - Testing
 
 -   [x] Testing Framework - Vitest
 -   [x] Shadow DOM Piercing
 -   [x] Concept of screen
 -   [x] DOM HTML Snapshots
+-   [x] Setup Testing framework inside of the package
+-   [x] Test the framework
+    -   [x] App Context
+    -   [x] Internal State Updates
+    -   [x] Signal Updates
+    -   [x] Props Updates
+        -   [x] Props Diffing
+            -   [x] Primitives
+            -   [x] Handlers
+            -   [x] Objects
+    -   [x] Signal Cleanups
+    -   [x] Lifecycle Methods
+        -   [x] onMount
+        -   [x] onDispose
+        -   [x] onRender
+            -   [x] Render Batching
+            -   [x] User defined flags
+    -   [x] Styles
+    -   [x] Magic rendering when throwing reactive proxies around via props
+    -   [x] Ref
+    -   [x] View Model Binding
+    -   [x] Reactive
+        -   [x] Arrays
+        -   [x] Unsupported Collections
+        -   [x] Nested Objects
+
+## CURRENT
+
+-   [] Setup Github Actions - Run tests on every push
+
+## CHORES
+
+-   [] Fix an app in perf repo, cleanup requestAnimationFrames in removed components
+-   [] Update dependencies from HTML Snapshots
 
 ## Phase 2 - Testing
 
--   [] Setup Github Actions - Run tests on every push
 -   [] Releasing based on tags
 
 ## Phase 3 - Routing
@@ -64,6 +92,8 @@
 
 ## Nice To Have
 
+-   [] Improve View Model Binding - (~value:input)
+-   [] Can I have async in onMount, can onMount itself be async
 -   [] Application specific Event Bus - inner app commutation.
 -   [] Can I have collections in my reactive state
 -   [] Prop Validation ??

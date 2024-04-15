@@ -9,13 +9,25 @@ import './TestComp';
 export class MainApp extends Component {
     @state()
     state = {
-        string: 'State Value',
+        string: 'Initial State Value',
+        color: 'Initial Color',
+        size: 0,
     };
+
+    propsHandler = (): void => {};
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onRender = (_renderTrigger?: string[]): void => {};
 
     template = (): Template => {
         return html`
-            <h1>Hello There from MainApp!! ${this.state.string}</h1>
-            <test-ono />
+            <h1>MainApp</h1>
+            <p id="main-app-state">${this.state.string}</p>
+            <test-comp
+                .color=${this.state.color}
+                .size=${this.state.size}
+                .handler=${this.propsHandler}
+            />
         `;
     };
 }

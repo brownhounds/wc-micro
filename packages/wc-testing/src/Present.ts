@@ -5,7 +5,7 @@ import { query } from './shadowRoot';
 export class Present {
     private rootElement!: Element;
 
-    public screen(template: Template, timeout = 10): Promise<this> {
+    public screen(template: Template): this {
         render(document.body, template);
 
         this.rootElement = document.body.firstElementChild as Element;
@@ -16,18 +16,14 @@ export class Present {
             );
         }
 
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(this);
-            }, timeout);
-        });
+        return this;
     }
 
     public root<Component extends HTMLElement>(): Component {
         return this.rootElement as Component;
     }
 
-    public render(timeout = 0): Promise<void> {
+    public wait(timeout = 0): Promise<void> {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve();

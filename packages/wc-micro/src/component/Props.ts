@@ -31,18 +31,14 @@ export class Props<ComponentProps = unknown> {
         const prop = (this.data as any)[name];
 
         if (typeof value === 'function') {
-            if (!prop) {
+            if (!(this.data as any)[name]) {
                 this.setReactive(name, value);
             }
             return;
         }
 
-        if (!prop) {
+        if (prop !== value) {
             this.setReactive(name, value);
-        } else {
-            if (prop !== value) {
-                this.setReactive(name, value);
-            }
         }
     }
 }

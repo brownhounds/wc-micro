@@ -8,15 +8,19 @@ export class Renderer {
 
     constructor(private component: Component) {}
 
-    public schedule(renderTrigger: RenderTriggerType): void {
+    public schedule(
+        renderTrigger?: RenderTriggerType,
+        isConnectedCallback = false
+    ): void {
         if (this.component.template) {
-            this.scheduledRenderTriggers.add(renderTrigger);
+            if (renderTrigger) this.scheduledRenderTriggers.add(renderTrigger);
             if (!this.locked) {
                 this.locked = true;
                 setTimeout(() => {
                     this.render(Array.from(this.scheduledRenderTriggers));
                     this.scheduledRenderTriggers.clear();
                     this.locked = false;
+                    if (isConnectedCallback) this.component.onMount?.();
                 }, 0);
             }
         }

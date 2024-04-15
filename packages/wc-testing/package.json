@@ -10,7 +10,8 @@
     ],
     "exports": {
         ".": "./dist/index.js",
-        "./snapshots": "./dist/snapshots.js"
+        "./snapshots": "./dist/snapshots.js",
+        "./mocks": "./dist/mocks.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",

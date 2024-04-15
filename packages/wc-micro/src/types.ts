@@ -5,7 +5,6 @@ export const html = uhtml;
 export const svg = usvg;
 
 export const RenderTrigger = {
-    UNKNOWN: 'UNKNOWN',
     PROPS: 'PROPS',
     SIGNAL: 'SIGNAL',
     LOCAL_STATE: 'LOCAL_STATE',

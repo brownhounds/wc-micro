@@ -1,8 +1,8 @@
 import type { Component } from './component/Component';
-import { RenderTrigger, type RenderTriggerType } from './types';
+import type { RenderTriggerType } from './types';
 
 export class Reactive<State> {
-    private subscribers = new Set<Component>();
+    public subscribers = new Set<Component>();
     private proxy: State;
     private proxySet = new WeakSet<any>();
 
@@ -12,7 +12,7 @@ export class Reactive<State> {
 
     constructor(
         state: any,
-        private renderTrigger: RenderTriggerType = RenderTrigger.UNKNOWN
+        private renderTrigger?: RenderTriggerType
     ) {
         this.proxy = this.create(state);
     }
@@ -72,6 +72,9 @@ export class Reactive<State> {
     }
 }
 
+export const UNSUPPORTED_COLLECTION_ERROR_MESSAGE =
+    'Reactive state does not support collections: Map, WeakMap, Set, WeakSet';
+
 const unsupportedCollectionError = (prop: any): any => {
     if (
         prop instanceof Map ||
@@ -79,8 +82,6 @@ const unsupportedCollectionError = (prop: any): any => {
         prop instanceof Set ||
         prop instanceof WeakSet
     ) {
-        throw new Error(
-            'Reactive state does not support collections: Map, WeakMap, Set, WeakSet'
-        );
+        throw new Error(UNSUPPORTED_COLLECTION_ERROR_MESSAGE);
     }
 };

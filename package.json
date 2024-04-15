@@ -11,18 +11,13 @@
         "make-package": "./scripts/make-package",
         "build-micro": "cd ./packages/wc-micro && npm run build",
         "prepare": "husky",
-        "test-micro": "vitest",
+        "test-micro": "cd ./packages/wc-micro && npm run test",
         "test-micro-ui": "vitest --ui"
     },
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.4",
         "@brownhounds/ts-config": "0.1.0",
-        "@vitest/coverage-v8": "1.4.0",
-        "@vitest/ui": "1.4.0",
-        "happy-dom": "14.7.1",
         "husky": "9.0.11",
-        "jsdom": "24.0.0",
-        "typescript": "5.4.3",
-        "vitest": "1.4.0"
+        "typescript": "5.4.3"
     }
 }

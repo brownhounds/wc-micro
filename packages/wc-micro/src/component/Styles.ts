@@ -2,26 +2,26 @@ import { App } from '../App';
 import type { Component } from './Component';
 
 export class Styles {
-    private styles: string[];
-    private sheet = new CSSStyleSheet();
+    public styles: string[];
+    public sheet?: CSSStyleSheet;
 
     constructor(private component: Component) {
         this.styles = (this.component.constructor as any).$styles;
     }
 
     public initialize(): void {
-        const { styles, sheet } = this;
+        const { styles } = this;
 
         if (this.component.shadowRoot) {
-            const cssReset = App.config.cssReset
-                ? `${App.config.cssReset}\n\n`
-                : '';
+            if (App.config.cssReset && App.config.cssReset.length)
+                styles.unshift(App.config.cssReset);
 
-            const combinedStyles = cssReset + styles.join('\n\n');
+            const combinedStyles = styles.join(' ');
 
             if (combinedStyles.length) {
-                sheet.replaceSync(combinedStyles);
-                this.component.shadowRoot.adoptedStyleSheets = [sheet];
+                this.sheet = new CSSStyleSheet();
+                this.sheet.replaceSync(combinedStyles);
+                this.component.shadowRoot.adoptedStyleSheets = [this.sheet];
             }
         }
     }

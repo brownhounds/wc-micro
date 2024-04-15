@@ -14,8 +14,12 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
         return this.shadowRoot;
     }
 
-    protected get props(): ComponentProps {
+    public get props(): ComponentProps {
         return this.$props.data;
+    }
+
+    public get styles(): Styles {
+        return this.$styles;
     }
 
     constructor() {
@@ -28,8 +32,7 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
         this.$props.initialize();
         this.$localState.initialize();
         this.beforeMount?.();
-        this.render(RenderTrigger.ON_MOUNT);
-        this.onMount?.();
+        this.render(RenderTrigger.ON_MOUNT, true);
     }
 
     disconnectedCallback(): void {
@@ -41,14 +44,17 @@ export class Component<ComponentProps = unknown> extends HTMLElement {
 
     public onRender?: (renderTriggers?: RenderTriggerType[]) => void;
 
-    public onDispose?: () => void;
+    public beforeMount?: () => void;
 
     public onMount?: () => void;
 
-    public beforeMount?: () => void;
+    public onDispose?: () => void;
 
-    public render(renderTrigger?: RenderTriggerType): void {
-        this.$renderer.schedule(renderTrigger || RenderTrigger.UNKNOWN);
+    public render(
+        renderTrigger?: RenderTriggerType,
+        isConnectedCallback = false
+    ): void {
+        this.$renderer.schedule(renderTrigger, isConnectedCallback);
     }
 
     private unsubscribeFromSignals(): void {
