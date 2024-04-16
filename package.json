@@ -9,10 +9,10 @@
     "scripts": {
         "lint": "tsc --noEmit && eslint --ext .ts .",
         "make-package": "./scripts/make-package",
-        "build-micro": "cd ./packages/wc-micro && npm run build",
         "prepare": "husky",
-        "test-micro": "cd ./packages/wc-micro && npm run test",
-        "test-micro-ui": "vitest --ui"
+        "build-testing": "cd ./packages/wc-testing && npm run build",
+        "build-micro": "cd ./packages/wc-micro && npm run build",
+        "test-micro": "cd ./packages/wc-micro && npm run test"
     },
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.4",

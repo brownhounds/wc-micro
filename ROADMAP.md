@@ -3,9 +3,9 @@
 ## Phase 1 - MVP
 
 -   [x] Template Rendering - uhtml - https://github.com/WebReflection/uhtml
-    -   [] Granular control of rendering cycle
+    -   [x] Granular control of rendering cycle
         -   [x] render()
-        -   [] Component lifecycle methods (onRender, onMount etc)
+        -   [x] Component lifecycle methods (onRender, onMount etc)
 -   [x] Internal Reactive State - Proxy, Pub Sub
 -   [x] External State - As seen in Preact Signals
 -   [x] Main Class Decorator 🎨 - ability to subscribe to global signals
@@ -72,33 +72,35 @@
         -   [x] Arrays
         -   [x] Unsupported Collections
         -   [x] Nested Objects
+-   [x] Setup Github Actions - Run tests on every push
 
 ## CURRENT
 
--   [] Setup Github Actions - Run tests on every push
+-   Design and Build SPA router.
 
 ## CHORES
 
 -   [] Fix an app in perf repo, cleanup requestAnimationFrames in removed components
 -   [] Update dependencies from HTML Snapshots
 
-## Phase 2 - Testing
-
--   [] Releasing based on tags
-
 ## Phase 3 - Routing
 
--   Build SPA router!
+-   Design and Build SPA router.
+
+## Phase 4 - UI
+
+-   Design Theme Context.
 
 ## Nice To Have
 
+-   [] Releasing based on tags
 -   [] Improve View Model Binding - (~value:input)
--   [] Can I have async in onMount, can onMount itself be async
--   [] Application specific Event Bus - inner app commutation.
 -   [] Can I have collections in my reactive state
+-   [] Can I have async in onMount, can onMount itself be async
 -   [] Prop Validation ??
+-   [] Can I detect dangling custom elements tags ?? missing imports ??
 -   [] Prop rendering array dependency ??
--   [] Can I detect dangling custom elements tags ?? missing imports
+-   [] Application specific Event Bus - inner app commutation.
 
 ## Phase at some point
 
