@@ -1,5 +1,5 @@
 {
-    "name": "@brownhounds/wc-testing",
+    "name": "@brownhounds/event-bus",
     "version": "0.1.0",
     "license": "MIT",
     "author": "brownhounds",
@@ -9,27 +9,22 @@
         "./dist/**/*"
     ],
     "exports": {
-        ".": "./dist/index.js",
-        "./snapshots": "./dist/snapshots.js",
-        "./mocks": "./dist/mocks.js"
+        ".": "./dist/index.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",
         "emit-declarations": "tsc --emitDeclarationOnly --declaration --outDir ./dist",
         "build-lib": "vite build",
         "build": "npm run clean && npm run build-lib && npm run emit-declarations",
-        "lint": "tsc --noEmit && eslint --ext .ts ."
+        "lint": "tsc --noEmit && eslint --ext .ts .",
+        "test": "vitest run --coverage --reporter verbose",
+        "test-nc": "vitest run"
     },
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.0",
         "@brownhounds/ts-config": "0.1.0",
-        "@brownhounds/uhtml": "*",
-        "typescript": "5.4.5",
-        "vite": "5.0.12",
-        "vitest": "1.5.2",
-        "rehype-format": "4.0.1",
-        "rehype-parse": "8.0.4",
-        "rehype-stringify": "9.0.3",
-        "unified": "10.1.2"
+        "typescript": "5.3.3",
+        "vite": "5.2.10",
+        "vitest": "1.5.2"
     }
 }

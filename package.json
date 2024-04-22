@@ -12,12 +12,16 @@
         "prepare": "husky",
         "build-testing": "cd ./packages/wc-testing && npm run build",
         "build-micro": "cd ./packages/wc-micro && npm run build",
-        "test-micro": "cd ./packages/wc-micro && npm run test"
+        "test-micro": "cd ./packages/wc-micro && npm run test",
+        "build-event-bus": "cd ./packages/event-bus && npm run build",
+        "test-event-bus": "cd ./packages/event-bus && npm run test",
+        "build-router": "cd ./packages/wc-micro-router && npm run build",
+        "test-router": "cd ./packages/wc-micro-router && npm run test"
     },
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.4",
         "@brownhounds/ts-config": "0.1.0",
         "husky": "9.0.11",
-        "typescript": "5.4.3"
+        "typescript": "5.4.5"
     }
 }

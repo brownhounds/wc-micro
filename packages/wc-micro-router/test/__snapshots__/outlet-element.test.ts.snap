@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Route Matching > Outlet with id without a matching route 1`] = `[Error: Route with outletId: some-id was not found]`;
+
+exports[`Route Matching > Outlet without id 1`] = `[Error: <outlet-element /> element requires an id]`;

@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RouterContext Config > Match route \`/prefix/home/:pageId\` 1`] = `
+"
+<app-router>
+  <page-one-outlet-with-user-tag><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/prefix/home/123456</p>
+    <app-outlet id="page-one-nested-route">
+      <page-two><!-- #shadowroot -->
+        <h1>Page 2</h1>
+        <p>/prefix/home/123456</p>
+      </page-two>
+    </app-outlet>
+  </page-one-outlet-with-user-tag>
+</app-router>
+"
+`;
+
+exports[`RouterContext Config > Match route \`/prefix/home\` 1`] = `
+"
+<app-router>
+  <page-one-outlet-with-user-tag><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/prefix/home</p>
+    <app-outlet id="page-one-nested-route"></app-outlet>
+  </page-one-outlet-with-user-tag>
+</app-router>
+"
+`;

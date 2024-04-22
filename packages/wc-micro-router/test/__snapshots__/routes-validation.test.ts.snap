@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InitRouter - Duplicated Route Params > Duplicated Route Params 1`] = `[Error: Route: /home/:pageId/something/:pageId has duplicated dynamic parameters :pageId]`;
+
+exports[`InitRouter - Duplicated Route Params > Duplicated Route Params 2`] = `[Error: Route: /home/:categoryId/something/:categoryId/page/:pageId has duplicated dynamic parameters :categoryId]`;
+
+exports[`InitRouter - Missing Outlet IDs On Children Route > Missing Outlet ID 1`] = `[Error: Child Route: /home/category/:categoryId/page/:pageId has missing outletId]`;
+
+exports[`InitRouter - Missing Outlet IDs On Children Route > Missing Outlet ID 2`] = `[Error: Child Route: /another-level-of-nesting has missing outletId]`;
+
+exports[`InitRouter - Multiple Duplicated Route > Duplicated Routes 1`] = `[Error: Found duplicated routes: /home]`;
+
+exports[`InitRouter - Multiple Duplicated Route > Duplicated Routes 2`] = `[Error: Found duplicated routes: /home, /]`;
+
+exports[`InitRouter - Multiple Duplicated Route > Duplicated Routes 3`] = `[Error: Found duplicated routes: /home, /, /page/:pageId]`;
+
+exports[`InitRouter - Multiple Duplicated Route > Duplicated Routes 4`] = `[Error: Found duplicated routes: /home, /, /page/:pageId]`;
+
+exports[`InitRouter - Multiple Duplicated Route > Duplicated Routes 5`] = `[Error: Found duplicated routes: /home, /, /page/:pageId, /some-route-here/page/:pageId]`;
+
+exports[`InitRouter - Single Duplicated Route > Duplicated Routes 1`] = `[Error: Found duplicated routes: /home]`;
+
+exports[`InitRouter - Single Duplicated Route > Duplicated Routes 2`] = `[Error: Found duplicated routes: /]`;
+
+exports[`InitRouter - Single Duplicated Route > Duplicated Routes 3`] = `[Error: Found duplicated routes: /page/:pageId]`;
+
+exports[`InitRouter - Single Duplicated Route > Duplicated Routes 4`] = `[Error: Found duplicated routes: /page/:pageId]`;
+
+exports[`InitRouter - Single Duplicated Route > Duplicated Routes 5`] = `[Error: Found duplicated routes: /some-route-here/page/:pageId]`;

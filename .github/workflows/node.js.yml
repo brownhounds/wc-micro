@@ -38,11 +38,23 @@ jobs:
             - name: '@brownhounds/wc-testing - Build'
               run: npm run build-testing
 
-            - name: '@monorepo - Eslint'
-              run: npm run lint
+            - name: '@brownhounds/event-bus - Test'
+              run: npm run test-event-bus
+
+            - name: '@brownhounds/event-bus - Build'
+              run: npm run build-event-bus
 
             - name: '@brownhounds/wc-micro - Test'
               run: npm run test-micro
 
             - name: '@brownhounds/wc-micro - Build'
               run: npm run build-micro
+
+            - name: '@brownhounds/wc-micro-router - Test'
+              run: npm run test-router
+
+            - name: '@brownhounds/wc-micro-router - Build'
+              run: npm run build-router
+
+            - name: '@monorepo - Eslint'
+              run: npm run lint

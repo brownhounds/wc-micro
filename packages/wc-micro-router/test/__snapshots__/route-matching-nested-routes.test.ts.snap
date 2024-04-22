@@ -1,0 +1,102 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Route Matching - Nested Routes > Match Route: \`/\` 1`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/</p>
+    <outlet-element id="page-one-nested-route"></outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Match Route: \`/page/:pageId/category/:categoryId\` 1`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/page/123456/category/56987</p>
+    <outlet-element id="page-one-nested-route">
+      <page-two-outlet><!-- #shadowroot -->
+        <h1>Page 2 - With Outlet</h1>
+        <p>/page/123456/category/56987</p>
+        <outlet-element id="page-two-nested-route">
+          <page-one><!-- #shadowroot -->
+            <h1>Page 1</h1>
+            <p>/page/123456/category/56987</p>
+          </page-one>
+        </outlet-element>
+      </page-two-outlet>
+    </outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Match Route: \`/page/:pageId\` 1`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/page/123456</p>
+    <outlet-element id="page-one-nested-route">
+      <page-two-outlet><!-- #shadowroot -->
+        <h1>Page 2 - With Outlet</h1>
+        <p>/page/123456</p>
+        <outlet-element id="page-two-nested-route"></outlet-element>
+      </page-two-outlet>
+    </outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Navigate 1`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/</p>
+    <outlet-element id="page-one-nested-route"></outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Navigate 2`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/</p>
+    <outlet-element id="page-one-nested-route"></outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Navigate 3`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/</p>
+    <outlet-element id="page-one-nested-route"></outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;
+
+exports[`Route Matching - Nested Routes > Navigate 4`] = `
+"
+<router-element>
+  <page-one-outlet><!-- #shadowroot -->
+    <h1>Page 1 - With Outlet</h1>
+    <p>/</p>
+    <outlet-element id="page-one-nested-route"></outlet-element>
+  </page-one-outlet>
+</router-element>
+"
+`;

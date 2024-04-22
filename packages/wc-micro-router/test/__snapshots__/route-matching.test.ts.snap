@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Route Matching > Match Route With Params 1`] = `
+"
+<router-element>
+  <page-two><!-- #shadowroot -->
+    <h1>Page 2</h1>
+    <p>/some-sort-of-page-id</p>
+  </page-two>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Match Route Without Params 1`] = `
+"
+<router-element>
+  <page-one><!-- #shadowroot -->
+    <h1>Page 1</h1>
+    <p>/home</p>
+  </page-one>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Navigate 1`] = `
+"
+<router-element>
+  <page-one><!-- #shadowroot -->
+    <h1>Page 1</h1>
+    <p>/home</p>
+  </page-one>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Navigate 2`] = `
+"
+<router-element>
+  <page-two><!-- #shadowroot -->
+    <h1>Page 2</h1>
+    <p>/home</p>
+  </page-two>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Navigate 3`] = `
+"
+<router-element>
+  <page-one><!-- #shadowroot -->
+    <h1>Page 1</h1>
+    <p>/home</p>
+  </page-one>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Navigate with replace 1`] = `
+"
+<router-element>
+  <page-one><!-- #shadowroot -->
+    <h1>Page 1</h1>
+    <p>/home</p>
+  </page-one>
+</router-element>
+"
+`;
+
+exports[`Route Matching > Navigate with replace 2`] = `
+"
+<router-element>
+  <page-two><!-- #shadowroot -->
+    <h1>Page 2</h1>
+    <p>/home</p>
+  </page-two>
+</router-element>
+"
+`;

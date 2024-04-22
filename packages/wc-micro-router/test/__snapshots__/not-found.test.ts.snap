@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Not Found - Built In > Not Found on \`/\` route 1`] = `
+"
+<router-element>
+  <router-not-found>
+    <h1>404</h1>
+    <p>Page Not Found</p>
+  </router-not-found>
+</router-element>
+"
+`;
+
+exports[`Not Found - UserDefined > Not Found on \`/\` route 1`] = `
+"
+<router-element>
+  <not-found><!-- #shadowroot -->
+    <h1>User Defined 404</h1>
+  </not-found>
+</router-element>
+"
+`;
