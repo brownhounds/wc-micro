@@ -10,9 +10,12 @@ export class Styles {
     }
 
     public initialize(): void {
-        const { styles } = this;
+        if (
+            this.component.shadowRoot &&
+            !this.component.shadowRoot.adoptedStyleSheets.length
+        ) {
+            const { styles } = this;
 
-        if (this.component.shadowRoot) {
             if (App.config.cssReset && App.config.cssReset.length)
                 styles.unshift(App.config.cssReset);
 
