@@ -10,19 +10,28 @@ export class Styles {
     }
 
     public initialize(): void {
-        const { styles } = this;
+        if (
+            this.component.shadowRoot &&
+            !this.component.shadowRoot.adoptedStyleSheets?.length
+        ) {
+            if (App.config.cssReset && App.config.cssReset.length) {
+                this.styles = this.prependStyles(
+                    App.config.cssReset,
+                    this.styles
+                );
+            }
 
-        if (this.component.shadowRoot) {
-            if (App.config.cssReset && App.config.cssReset.length)
-                styles.unshift(App.config.cssReset);
-
-            const combinedStyles = styles.join(' ');
-
-            if (combinedStyles.length) {
+            if (this.styles.length) {
                 this.sheet = new CSSStyleSheet();
-                this.sheet.replaceSync(combinedStyles);
+                this.sheet.replaceSync(this.styles.join(' '));
                 this.component.shadowRoot.adoptedStyleSheets = [this.sheet];
             }
         }
+    }
+
+    private prependStyles(value: string, array: string[]): string[] {
+        const newArray = array.slice();
+        newArray.unshift(value);
+        return newArray;
     }
 }
