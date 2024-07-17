@@ -21,7 +21,7 @@
         "test-nc": "vitest run"
     },
     "devDependencies": {
-        "@brownhounds/eslint-config": "0.1.0",
+        "@brownhounds/eslint-config": "0.1.4",
         "@brownhounds/ts-config": "0.1.0",
         "@vitest/coverage-v8": "2.0.3",
         "typescript": "5.5.3",

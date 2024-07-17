@@ -21,7 +21,7 @@
         "test-nc": "vitest run"
     },
     "devDependencies": {
-        "@brownhounds/eslint-config": "0.1.0",
+        "@brownhounds/eslint-config": "0.1.4",
         "@brownhounds/ts-config": "0.1.0",
         "@brownhounds/wc-micro": "0.2.0",
         "@brownhounds/wc-testing": "*",

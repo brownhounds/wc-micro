@@ -1,5 +1,5 @@
 {
-    "name": "@brownhounds/wc-testing",
+    "name": "@brownhounds/wc-renderer",
     "version": "0.1.0",
     "license": "MIT",
     "author": "brownhounds",
@@ -9,9 +9,7 @@
         "./dist/**/*"
     ],
     "exports": {
-        ".": "./dist/index.js",
-        "./snapshots": "./dist/snapshots.js",
-        "./mocks": "./dist/mocks.js"
+        ".": "./dist/index.js"
     },
     "scripts": {
         "clean": "rm -rf ./dist",
@@ -23,13 +21,7 @@
     "devDependencies": {
         "@brownhounds/eslint-config": "0.1.4",
         "@brownhounds/ts-config": "0.1.0",
-        "@brownhounds/uhtml": "0.2.0",
         "typescript": "5.5.3",
-        "vite": "5.3.4",
-        "vitest": "2.0.3",
-        "rehype-format": "4.0.1",
-        "rehype-parse": "8.0.4",
-        "rehype-stringify": "9.0.3",
-        "unified": "10.1.2"
+        "vite": "5.3.4"
     }
 }
